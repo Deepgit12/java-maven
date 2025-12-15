@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    uses: Deepgit12/cirepo/.github/workflows/maven-template.yml@v1.0.0
+    uses: Deepgit12/cirepo/.github/workflows/maven-template.yml@v1.0
     with:
       java_version: "21"
       maven_goals: "clean verify"
