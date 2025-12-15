@@ -1,4 +1,4 @@
-name: Java CI
+name: Java CI -new
 
 on:
   push:
@@ -10,3 +10,7 @@ on:
 jobs:
   build:
     uses: ./.github/workflows/maven-template.yml
+    with:
+      java_version: "21"
+      maven_goals: "clean verify"
+      pom_file: "pom.xml"
