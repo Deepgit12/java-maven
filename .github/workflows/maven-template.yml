@@ -2,6 +2,24 @@ name: Maven Build Template
 
 on:
   workflow_call:
+    inputs:
+      java_version:
+        description: "Java version to use"
+        required: false
+        type: string
+        default: "21"
+
+      maven_goals:
+        description: "Maven goals to execute"
+        required: false
+        type: string
+        default: "clean package"
+
+      pom_file:
+        description: "Path to pom.xml"
+        required: false
+        type: string
+        default: "pom.xml"
 
 jobs:
   maven-build:
@@ -11,12 +29,12 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v4
 
-      - name: Set up JDK 21
+      - name: Set up JDK
         uses: actions/setup-java@v4
         with:
-          java-version: '21'
+          java-version: ${{ inputs.java_version }}
           distribution: 'temurin'
           cache: maven
 
       - name: Build with Maven
-        run: mvn -B package --file pom.xml
+        run: mvn -B ${{ inputs.maven_goals }} --file ${{ inputs.pom_file }}
